@@ -26,7 +26,7 @@ class Teacher(models.Model):
         verbose_name_plural = "Викладачі"
 
     def __str__(self):
-        return self.name
+        return f'{self.name} {self.surname}'
 
     def __repr__(self):
         """

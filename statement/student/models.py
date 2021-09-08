@@ -29,7 +29,7 @@ class Student(models.Model):
         verbose_name_plural = "Студенти"
 
     def __str__(self):
-        return self.name
+        return f'{self.name} {self.surname} {self.group}'
 
     def __repr__(self):
         """
