@@ -19,7 +19,17 @@ class Student(models.Model):
     name = models.CharField(blank=True, max_length=20, verbose_name="Ім'я")
     surname = models.CharField(blank=True, max_length=20, verbose_name="Прізвище")
     patronymic = models.CharField(blank=True, max_length=20, verbose_name="По-батькові")
-    group = models.CharField(blank=True, max_length=20, verbose_name="Група")
+    group = models.OneToOneField('group.Group', blank=True, max_length=20, verbose_name="Група",
+                                 on_delete=models.CASCADE)
+    points = models.ForeignKey('point.Point', blank=True, max_length=10, on_delete=models.CASCADE)
+    subjects = models.ForeignKey('subject.Subject', blank=True, max_length=50, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Студент"
+        verbose_name_plural = "Студенти"
+
+    def __str__(self):
+        return self.name
 
     def __repr__(self):
         """

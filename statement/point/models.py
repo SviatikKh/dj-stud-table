@@ -9,3 +9,10 @@ class Point(models.Model):
         type point: str max_length=10
     """
     point = models.CharField(blank=True, max_length=10, verbose_name="Оцінка")
+
+    def __str__(self):
+        return self.point
+
+    class Meta:
+        verbose_name = "Оцінка"
+        verbose_name_plural = "Оцінки"

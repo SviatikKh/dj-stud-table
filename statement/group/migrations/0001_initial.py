@@ -12,14 +12,14 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='CustomUser',
+            name='Group',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('password', models.CharField(max_length=128, verbose_name='password')),
-                ('last_login', models.DateTimeField(blank=True, null=True, verbose_name='last login')),
+                ('group', models.CharField(blank=True, max_length=20, verbose_name='Група')),
             ],
             options={
-                'abstract': False,
+                'verbose_name': 'Група',
+                'verbose_name_plural': 'Групи',
             },
         ),
     ]

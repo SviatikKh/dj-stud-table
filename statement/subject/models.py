@@ -9,3 +9,10 @@ class Subject(models.Model):
         type subject: str max_length=10
     """
     subject = models.CharField(blank=True, max_length=50, verbose_name="Предмет")
+
+    def __str__(self):
+        return self.subject
+
+    class Meta:
+        verbose_name = "Предмет"
+        verbose_name_plural = "Предмети"

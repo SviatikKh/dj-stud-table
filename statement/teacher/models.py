@@ -21,6 +21,13 @@ class Teacher(models.Model):
     surname = models.CharField(blank=True, max_length=20, verbose_name="Прізвище")
     patronymic = models.CharField(blank=True, max_length=20, verbose_name="По-батькові")
 
+    class Meta:
+        verbose_name = "Викладач"
+        verbose_name_plural = "Викладачі"
+
+    def __str__(self):
+        return self.name
+
     def __repr__(self):
         """
         This magic method is redefined to show class and id of Teacher object.
