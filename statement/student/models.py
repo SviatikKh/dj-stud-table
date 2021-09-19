@@ -19,10 +19,12 @@ class Student(models.Model):
     name = models.CharField(blank=True, max_length=20, verbose_name="Ім'я")
     surname = models.CharField(blank=True, max_length=20, verbose_name="Прізвище")
     patronymic = models.CharField(blank=True, max_length=20, verbose_name="По-батькові")
-    group = models.OneToOneField('group.Group', blank=True, max_length=20, verbose_name="Група",
+    group = models.OneToOneField('score_summary.Group', blank=True, max_length=20, verbose_name="Група",
                                  on_delete=models.CASCADE)
-    points = models.ForeignKey('point.Point', blank=True, max_length=10, on_delete=models.CASCADE)
-    subjects = models.ForeignKey('subject.Subject', blank=True, max_length=50, on_delete=models.CASCADE)
+    points = models.ForeignKey('score_summary.Point', null=True, blank=True, max_length=10, on_delete=models.CASCADE,
+                               verbose_name="Оцінка")
+    subjects = models.ForeignKey('score_summary.Subject', blank=True, max_length=50, on_delete=models.CASCADE,
+                                 verbose_name="Предмет")
 
     class Meta:
         verbose_name = "Студент"

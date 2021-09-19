@@ -41,9 +41,7 @@ INSTALLED_APPS = [
     'authentication',
     'teacher',
     'student',
-    'subject',
-    'point',
-    'group',
+    'score_summary'
 ]
 
 MIDDLEWARE = [
