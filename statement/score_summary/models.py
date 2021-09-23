@@ -1,6 +1,14 @@
 from django.db import models
 
 
+class Scoresummary(models.Model):
+    student = models.ForeignKey('student.Student', on_delete=models.CASCADE, verbose_name="Студент", null=True)
+    group = models.ForeignKey('score_summary.Group', verbose_name="Група", on_delete=models.CASCADE)
+    point = models.ForeignKey('score_summary.Point', null=True, verbose_name="Оцінка", on_delete=models.SET_NULL)
+    subject = models.ForeignKey('score_summary.Subject',null=True, blank=True, max_length=50, verbose_name="Предмет",
+                                on_delete=models.SET_NULL)
+
+
 class Subject(models.Model):
     """This class represents a Subject.
         Attributes:
@@ -9,8 +17,7 @@ class Subject(models.Model):
         type subject: str max_length=10
     """
     subject = models.CharField(blank=True, max_length=50, verbose_name="Предмет")
-    group = models.ForeignKey('score_summary.Group', verbose_name="Група", on_delete=models.CASCADE)
-    point = models.OneToOneField('score_summary.Point', null=True, verbose_name="Оцінка", on_delete=models.CASCADE)
+    teacher = models.ForeignKey('teacher.Teacher', null=True, on_delete=models.SET_NULL, verbose_name="Викладач")
 
     def __str__(self):
         return self.subject

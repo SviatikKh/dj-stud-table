@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+  <title>
+      {% block title %}
+        Library application
+      {% endblock %}
+  </title>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        {% comment %} <li class="nav-item active">
+          <a class="nav-link" href="{% url 'book_get_all' %}" tabindex="-1" aria-disabled="false">Books</a>
+        </li> {% endcomment %}
+         <li class="nav-item active">
+          <a class="nav-link active" href="{% url 'teachers_list' %}" tabindex="-1" aria-disabled="false">Authors</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link active" href="{% url 'users_list' %}" tabindex="-1" aria-disabled="false">Users</a>
+        </li>
+        {% comment %} <li class="nav-item active">
+          <a class="nav-link" href="{% url 'order_get_all' %}" tabindex="-1" aria-disabled="false">Orders</a>
+        </li> {% endcomment %}
+      </ul>
+    </div>
+  </nav>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-10 offset-rs-20">
+        {% block content %}
+          There is no content
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>
