@@ -1,0 +1,15 @@
+{% extends "teacher.html" %}
+{% block content %}
+<h1>Оновити дані викладача:</h1>
+<p><b>Тут Ви можете оновити дані по ID {{id}}</b></p>
+<hr>
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <form action="{{update.teacher_put}}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" class="btn btn-outline-info">Підтвердити зміни</button>
+        </form>
+    </thead>
+</table>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="table table-bordered"> 
+    
+    <form method="POST"> 
+        
+        {% csrf_token %} 
+        Ви впевнені, що хочете видалити цього викладача??
+        <input type="submit" value="Yes" /> 
+        <a href="teachers_list/">Скасувати</a>
+    </form> 
+</div> 
+
+{% endblock %}

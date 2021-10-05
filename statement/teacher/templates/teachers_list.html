@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{%  block content %}
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Patronymic</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for teacher in teachers_list %}
+      <tr>
+        <td>{{ teacher.id }}</td>
+        <td>{{ teacher.name }}</td>
+        <td>{{ teacher.surname }}</td>
+        <td>{{ teacher.patronymic }}</td>
+        <td><a href="{{ teacher.get_absolute_url }}" class="btn btn-secondary">Показати більше</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}

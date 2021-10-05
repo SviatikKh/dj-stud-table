@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from .models import Teacher
 
 
-class  TeacherForm(ModelForm):
+class TeacherForm(ModelForm):
     class Meta:
         model = Teacher
         fields = ['name', 'surname', 'patronymic']
@@ -15,6 +15,6 @@ class  TeacherForm(ModelForm):
 
     def create(self):
         new_teacher = Teacher.objects.create(name=self.cleaned_data['name'],
-            surname=self.cleaned_data['surname'],
-            patronymic=self.cleaned_data['patronymic'])
+                                             surname=self.cleaned_data['surname'],
+                                             patronymic=self.cleaned_data['patronymic'])
         return new_teacher

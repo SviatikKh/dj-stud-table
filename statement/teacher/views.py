@@ -11,14 +11,8 @@ def get_all_teachers(request):
     teacher2 = Teacher(id=2, name="Микола", surname="Забарко", patronymic="Генадійович")
     teacher2.save()
 
-    context = {'teacher_list': Teacher.objects.all()}
-    return render(request, 'teacher_list.html', context)
-
-
-def get_by_id(request, id):
-    teacher = Teacher.get_by_id(id)
-    context = {'teacherr': teacher}
-    return render(request, 'teacher.html', context)
+    context = {'teachers_list': Teacher.objects.all()}
+    return render(request, 'teachers_list.html', context)
 
 
 def delete_all_teachers(request):
@@ -47,7 +41,7 @@ def teacher_put(request, id):
         if form.is_valid():
             upd_teacher = Teacher.objects.get(pk=id)
             upd_teacher.update(**form.cleaned_data)
-            return HttpResponseRedirect(reverse("teacher_list"))
+            return HttpResponseRedirect(reverse("teachers_list"))
     else:
         form = TeacherForm(instance=teacher)
     return render(request, "update_teacher_form.html", {'form': form, 'id': id})
@@ -58,5 +52,5 @@ def delete_teacher_by_id(request, id):
     obj = get_object_or_404(Teacher, pk=id)
     if request.method == "POST":
         obj.delete()
-        return HttpResponseRedirect(reverse("teacher_list"))
+        return HttpResponseRedirect(reverse("teachers_list"))
     return render(request, "delete_teacher_by_id.html", context)
