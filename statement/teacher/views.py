@@ -6,11 +6,6 @@ from django.urls import reverse
 
 
 def get_all_teachers(request):
-    teacher1 = Teacher(id=1, name="Марія", surname="Ігонкіна", patronymic="Степанівна")
-    teacher1.save()
-    teacher2 = Teacher(id=2, name="Микола", surname="Забарко", patronymic="Генадійович")
-    teacher2.save()
-
     context = {'teachers_list': Teacher.objects.all()}
     return render(request, 'teachers_list.html', context)
 
@@ -29,18 +24,20 @@ class TeacherCreate(View):
     def post(self, request):
         post_form = TeacherForm(request.POST)
         if post_form.is_valid():
-            new_teacher = post_form.save()
-            return redirect(new_teacher)
-        return render(request, 'teacher_create.html', context={'form': post_form})
+            post_form.save()
+        return redirect('teachers_list')
 
 
 def teacher_put(request, id):
     teacher = Teacher.objects.get(pk=id)
+    form = TeacherForm(request.POST)
     if request.method == "POST":
-        form = TeacherForm(request.POST)
         if form.is_valid():
             upd_teacher = Teacher.objects.get(pk=id)
-            upd_teacher.update(**form.cleaned_data)
+            upd_teacher.name = form.cleaned_data["name"]
+            upd_teacher.surname = form.cleaned_data["surname"]
+            upd_teacher.patronymic = form.cleaned_data["patronymic"]
+            upd_teacher.save()
             return HttpResponseRedirect(reverse("teachers_list"))
     else:
         form = TeacherForm(instance=teacher)
