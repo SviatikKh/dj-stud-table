@@ -8,9 +8,9 @@ class TeacherForm(ModelForm):
         model = Teacher
         fields = ['name', 'surname', 'patronymic']
         widgets = {
-            'name': forms.TextInput(attrs={'class':'form-control'}),
-            'surname': forms.TextInput(attrs={'class':'form-control'}),
-            'patronymic': forms.TextInput(attrs={'class':'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'surname': forms.TextInput(attrs={'class': 'form-control'}),
+            'patronymic': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
     def create(self):

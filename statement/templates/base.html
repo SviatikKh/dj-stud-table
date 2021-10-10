@@ -22,16 +22,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
          <li class="nav-item active">
-          <a class="nav-link active" href="{% url 'teachers_list' %}" tabindex="-1" aria-disabled="false">Teachers</a>
+          <a class="nav-link active" href="{% url 'teachers_list' %}" tabindex="-1" aria-disabled="false">Викладачі</a>
         </li>
-          {% comment %}
+
         <li class="nav-item active">
-          <a class="nav-link active" href="{% url 'students_list' %}" tabindex="-1" aria-disabled="false">Students</a>
+          <a class="nav-link active" href="{% url 'students_list' %}" tabindex="-1" aria-disabled="false">Студенти</a>
         </li>
+
+          {% comment %}
           <li class="nav-item active">
-          <a class="nav-link active" href="{% url 'subjects_list' %}" tabindex="-1" aria-disabled="false">Subjects</a>
+          <a class="nav-link active" href="{% url 'subjects_list' %}" tabindex="-1" aria-disabled="false">Предмети</a>
         </li>
         {% endcomment %}
+          
       </ul>
     </div>
   </nav>
