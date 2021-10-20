@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<table class="table table-bordered">
+    <tr><th colspan="5">Група {{ group.group }}</th></tr>
+  <thead>
+    <tr>
+      <th>№ п/п</th>
+      <th>Студент</th>
+        {% for subject in subjects %}
+        <th>{{ subject.subject }}</th>
+      <th>Математика</th>
+      <th>Фізика</th>
+      <th>Хімія</th>
+      <th>Інформатика</th>
+      <th>Середній бал</th>
+    </tr>
+  </thead>
+    {% endfor %}
+  <tbody>
+      <tr>
+        <td>{{ student.name }} {{ student.surname }} {{ student.patronymic }}</td>
+</tr>
+</tbody>
+</table>
+
+
+{% endblock %}

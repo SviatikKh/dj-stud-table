@@ -23,8 +23,12 @@ class StudentCreate(View):
 
     def post(self, request):
         post_form = StudentForm(request.POST)
+        print('1')
         if post_form.is_valid():
-            post_form.save()
+            post_form.create()
+            print('2')
+        else:
+            return render(request, 'student_create.html', context={'form': post_form})
         return redirect('students_list')
 
 

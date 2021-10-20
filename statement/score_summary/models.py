@@ -18,6 +18,7 @@ class Subject(models.Model):
     """
     subject = models.CharField(blank=True, max_length=50, verbose_name="Предмет")
     teacher = models.ForeignKey('teacher.Teacher', null=True, on_delete=models.SET_NULL, verbose_name="Викладач")
+    # semester = models.CharField(blank=True,  max_length=5, verbose_name="Семестр")
 
     def __str__(self):
         return self.subject

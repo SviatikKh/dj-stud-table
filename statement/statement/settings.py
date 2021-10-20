@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'authentication',
     'teacher',
     'student',
-    'score_summary'
+    'score_summary',
+
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
