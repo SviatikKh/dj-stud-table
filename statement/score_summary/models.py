@@ -5,7 +5,7 @@ class Scoresummary(models.Model):
     student = models.ForeignKey('student.Student', on_delete=models.CASCADE, verbose_name="Студент", null=True)
     group = models.ForeignKey('score_summary.Group', verbose_name="Група", on_delete=models.CASCADE)
     point = models.ForeignKey('score_summary.Point', null=True, verbose_name="Оцінка", on_delete=models.SET_NULL)
-    subject = models.ForeignKey('score_summary.Subject',null=True, blank=True, max_length=50, verbose_name="Предмет",
+    subject = models.ForeignKey('score_summary.Subject', null=True, blank=True, max_length=50, verbose_name="Предмет",
                                 on_delete=models.SET_NULL)
 
 

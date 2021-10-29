@@ -22,5 +22,5 @@ urlpatterns = [
     # path('api/v1/', include('api.urls')),
     path('student/', include('student.urls')),
     path('teacher/', include('teacher.urls')),
-   # path('vidomist/', include('score_summary.urls')),
+    path('vidomist/', include('score_summary.urls')),
 ]
