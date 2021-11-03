@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from score_summary.models import Scoresummary, Subject
 from student.models import Student
-# from .forms import ScoresummaryForm
+from .forms import ScoresummaryForm
 
 
 def show_score_summary(request):
@@ -21,10 +21,22 @@ def show_score_summary(request):
 
 
 def fill_score_summary(request):
-    context = {'score_summary': Scoresummary.objects.all(),
+    # context = {
+    #            'students': Student.objects.all(),
+    #            'subjects': Subject.objects.all()}
+    sc = Scoresummary.objects.all().order_by('subject')
+    scores = {}
+    for s in sc:
+        if scores.get(s.student.name):
+            scores[s.student.name][s.subject.subject] = s.point.point
+        else:
+            scores[s.student.name] = {s.subject.subject: s.point.point}
+
+    context = {'score_summary': scores,
                'students': Student.objects.all(),
-               'subjects': Subject.objects.all()}
+               'subjects': Subject.objects.all().order_by('subject')}
+    print(scores)
     if request.method == "POST":
-        # student_point =
-        return redirect('score_summary')
+        print(request.POST)
+
     return render(request, 'score_summary.html', context=context)
