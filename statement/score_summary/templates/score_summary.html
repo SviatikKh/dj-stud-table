@@ -19,29 +19,30 @@
   </thead>
 
   <tbody>
-   {% for sc_sum in score_summary %}
+   {% for student , points in score_summary.items %}
         <tr>
-          <td>{{ score_summary }} </td>
-          <td>{{ sc_sum }}</td>
-                  {% for point in score_summary.sc_sum %}
-
-{#                <td>{{ point }}</td>#}
-{#          {% if sc_sum.point is not None and sc_sum.student == student and sc_sum.subject == subject %}#}
-              <td><input value={{ point }} disabled type="text" size="5"> </td>
+          <td>1</td>
+          <td>{{ student }} </td>
+            {% for point in points.values %}
+                {% if point != "None" %}
+                    <td><input value={{ point }} disabled type="text" size="5"> </td>
+                {% else %}
+                     <td><input name="student_{{ student.0 }}" type="text" size="5"> </td>
+                 {% endif %}
+{#          {% for point in score_summary.values %}#}
+{#                <td>{{ sc_sum.items.point }}</td>#}
+{#                {% if sc_sum.point is not None and sc_sum.student == student and sc_sum.subject == subject %}#}
+{#              <td><input value={{ point }} disabled type="text" size="5"> </td>#}
 {#          {% else %}#}
 {#              {% for subject in subjects %}#}
 {#                  <td><input name="student_{{ sc_sum.student.id }}" type="text" size="5"> </td>#}
-{#              {% endfor %}#}
-{#          {% endif %}#}
-                {% endfor %}
+              {% endfor %}
    {% endfor %}
         </tr>
   </tbody>
 </table>
         <input type="submit" value="Save">
 </form>
-
-
 
 {% endblock %}
 

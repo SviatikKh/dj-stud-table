@@ -4,9 +4,12 @@ from django.db import models
 class Scoresummary(models.Model):
     student = models.ForeignKey('student.Student', on_delete=models.CASCADE, verbose_name="Студент", null=True)
     group = models.ForeignKey('score_summary.Group', verbose_name="Група", on_delete=models.CASCADE)
-    point = models.ForeignKey('score_summary.Point', null=True, verbose_name="Оцінка", on_delete=models.SET_NULL)
+    point = models.ForeignKey('score_summary.Point', null=True, blank=True, verbose_name="Оцінка", on_delete=models.SET_NULL)
     subject = models.ForeignKey('score_summary.Subject', null=True, blank=True, max_length=50, verbose_name="Предмет",
                                 on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return f"{self.student} {self.group} {self.subject}"
 
 
 class Subject(models.Model):
@@ -41,6 +44,7 @@ POINTS = (
     ("11", "11"),
     ("12", "12"),
     ("зарах.", "зарах."),
+    ("None", None)
 )
 
 

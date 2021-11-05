@@ -4,6 +4,9 @@ from score_summary.models import Scoresummary, Subject
 from student.models import Student
 from .forms import ScoresummaryForm
 
+from django import template
+register = template.Library()
+
 
 def show_score_summary(request):
     context = {'score_summary': Scoresummary.objects.all(),
@@ -19,13 +22,13 @@ def show_score_summary(request):
 # def student_score_summary(request):
 #     pass
 
+KEY_MAP = {"Хімія": "chemistry"}
+
 
 def fill_score_summary(request):
-    # context = {
-    #            'students': Student.objects.all(),
-    #            'subjects': Subject.objects.all()}
-    sc = Scoresummary.objects.all().order_by('subject')
+    sc = Scoresummary.objects.all().order_by('-subject')
     scores = {}
+
     for s in sc:
         if scores.get(s.student.name):
             scores[s.student.name][s.subject.subject] = s.point.point
