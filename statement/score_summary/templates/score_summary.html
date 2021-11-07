@@ -24,10 +24,10 @@
           <td>1</td>
           <td>{{ student }} </td>
             {% for point in points.values %}
-                {% if point != "None" %}
+                {% if point is not None %}
                     <td><input value={{ point }} disabled type="text" size="5"> </td>
                 {% else %}
-                     <td><input name="student_{{ student.0 }}" type="text" size="5"> </td>
+                     <td><input name="student_{{ student }}" type="text" size="5"> </td>
                  {% endif %}
 {#          {% for point in score_summary.values %}#}
 {#                <td>{{ sc_sum.items.point }}</td>#}

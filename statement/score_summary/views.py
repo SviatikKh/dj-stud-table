@@ -30,10 +30,14 @@ def fill_score_summary(request):
     scores = {}
 
     for s in sc:
-        if scores.get(s.student.name):
-            scores[s.student.name][s.subject.subject] = s.point.point
+        if s.point:
+            point = s.point.point
         else:
-            scores[s.student.name] = {s.subject.subject: s.point.point}
+            point = None
+        if scores.get(s.student.name):
+            scores[s.student.name][s.subject.subject] = point
+        else:
+            scores[s.student.name] = {s.subject.subject: point}
 
     context = {'score_summary': scores,
                'students': Student.objects.all(),

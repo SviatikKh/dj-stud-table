@@ -9,7 +9,7 @@ class Scoresummary(models.Model):
                                 on_delete=models.SET_NULL)
 
     def __str__(self):
-        return f"{self.student} {self.group} {self.subject}"
+        return f"{self.student.pk} {self.student} {self.group} {self.subject}"
 
 
 class Subject(models.Model):
