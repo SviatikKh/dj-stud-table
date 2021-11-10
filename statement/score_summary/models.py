@@ -74,6 +74,7 @@ class Group(models.Model):
     """
     group = models.CharField(blank=True, max_length=20, verbose_name="Група")
     curator = models.CharField(null=True, blank=True, max_length=50, verbose_name="Куратор")
+    subject = models.ManyToManyField('score_summary.Subject')
 
     def __str__(self):
         return self.group

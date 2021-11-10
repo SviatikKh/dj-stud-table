@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from score_summary.models import Scoresummary, Subject
 from student.models import Student
-from .forms import ScoresummaryForm
+# from .forms import ScoresummaryForm
 
 from django import template
 register = template.Library()
@@ -34,10 +34,10 @@ def fill_score_summary(request):
             point = s.point.point
         else:
             point = None
-        if scores.get(s.student.name):
-            scores[s.student.name][s.subject.subject] = point
+        if scores.get(s.student.full_name()):
+            scores[s.student.full_name()][s.subject.subject] = point
         else:
-            scores[s.student.name] = {s.subject.subject: point}
+            scores[s.student.full_name()] = {s.subject.subject: point}
 
     context = {'score_summary': scores,
                'students': Student.objects.all(),
