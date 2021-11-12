@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<tr><th colspan="5">Група {{ group.group }}</th></tr>
+<form action="" method="post">
+        {% csrf_token %}
+    <table class="table table-bordered">
+    {{ formset.as_table }}
+    <thead>
+        <tr>
+          <th>№ п/п</th>
+          <th>Студент</th>
+           {% for subject in subjects %}
+               <th>{{ subject.subject }}</th>
+           {% endfor %}
+        </tr>
+  </thead>
+
+      <tbody>
+   {% for f in formset %}
+        <tr>
+          <td>{{ forloop.counter  }}</td>
+          <td>{{ f.student }}</td>
+            {% for subject, point in f.items %}
+                {% if point is not None %}
+                    <td><input value={{ point }} disabled type="text" size="5"> </td>
+                {% else %}
+                     <td><input name="student_{{ student }} {{ subject }}" type="text" size="5"> </td>
+                 {% endif %}
+              {% endfor %}
+   {% endfor %}
+        </tr>
+  </tbody>
+
+    </table>
+    <input type="submit" value="Save">
+{##}
+{#<table class="table table-bordered">#}
+{#        {{ form.as_table  }}#}
+{#  <thead>#}
+{#    <tr>#}
+{#      <th>№ п/п</th>#}
+{#      <th>Студент</th>#}
+{#       {% for subject in subjects %}#}
+{#           <th>{{ subject.subject }}</th>#}
+{#       {% endfor %}#}
+{#    </tr>#}
+{#  </thead>#}
+{##}
+{#  <tbody>#}
+{#   {% for student , points in score_summary.items %}#}
+{#        <tr>#}
+{#          <td>{{ forloop.counter  }}</td>#}
+{#          <td>{{ student }}</td>#}
+{#            {% for subject, point in points.items %}#}
+{#                {% if point is not None %}#}
+{#                    <td><input value={{ point }} disabled type="text" size="5"> </td>#}
+{#                {% else %}#}
+{#                     <td><input name="student_{{ student }} {{ subject }}" type="text" size="5"> </td>#}
+{#                 {% endif %}#}
+{#              {% endfor %}#}
+{#   {% endfor %}#}
+{#        </tr>#}
+{#  </tbody>#}
+{#</table>#}
+{#        <input type="submit" value="Save">#}
+</form>
+
+{% endblock %}

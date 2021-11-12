@@ -31,4 +31,3 @@ class Student(models.Model):
 
     def full_name(self):
         return f'{self.name} {self.surname} {self.patronymic}'
-
