@@ -1,7 +1,7 @@
 from django.forms import modelformset_factory
 from django.shortcuts import render, get_object_or_404, redirect
 
-from score_summary.models import Scoresummary, Subject
+from score_summary.models import Scoresummary, Subject, Point
 from student.models import Student
 from .forms import ScoresummaryForm
 
@@ -19,8 +19,11 @@ def show_score_summary(request):
 def fill_score_summary(request):
     sc = Scoresummary.objects.all().order_by('-subject')
     scores = {}
+    records_mapping = {}
 
     for s in sc:
+        map_name = f"{s.student.full_name()}_{s.subject.subject}"
+        records_mapping[map_name] = s
         if s.point:
             point = s.point.point
         else:
@@ -33,11 +36,16 @@ def fill_score_summary(request):
     context = {'score_summary': scores,
                'students': Student.objects.all(),
                'subjects': Subject.objects.all().order_by('subject')}
-    print(f'scores {scores}')
-    # save_student_points(request)
-    if request.method == "POST":
-        print(f'request.POST {request.POST}')
 
+    if request.method == "POST":
+        for key, point in request.POST.items():
+            student = records_mapping.get(key)
+            if student and point:
+                # print(records_mapping.get(k))
+                student.point = Point.objects.get(point=point)
+                student.save()
+                print(records_mapping.get(key))
+        return redirect('score_summary')
     return render(request, 'score_summary.html', context=context)
 
 
