@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Iм'я</th>
+      <th>По-батькові</th>
+      <th>Прізвище</th>
+      <th>Електронна адреса</th>
+      <th>Пароль</th>
+      <th>Оновлено</th>
+      <th>Створено</th>
+      <th>Роль</th>
+      <th>Активний</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.middle_name }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ 'Це пароль користувача' }}</td>
+        <td>{{ user.updated_at }}</td>
+        <td>{{ user.created_at }}</td>
+        <td>{{ user.role }}</td>
+        <td>{{ user.is_active }}</td>
+</tr>
+</tbody>
+</table>
+{% endblock %}
