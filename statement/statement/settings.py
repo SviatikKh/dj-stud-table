@@ -45,6 +45,10 @@ INSTALLED_APPS = [
     'score_summary',
 
     'debug_toolbar',
+    'rest_framework',
+    'corsheaders',
+    'djoser',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
