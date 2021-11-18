@@ -22,11 +22,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
 
-    # path('api/v1/authentication/', include('authentication.urls')),
+    path('api/v1/authentication/', include('authentication.urls')),
     path('api/v1/', include('api.urls')),
-    # path('api/v1/authorization/', include('rest_framework.urls')),
-    # path('api/v1/auth/', include('djoser.urls')),
-    # path('api/v1/auth_token/', include('djoser.urls.authtoken')),
+    path('api/v1/authorization/', include('rest_framework.urls')),
+    path('api/v1/auth/', include('djoser.urls')),
+    path('api/v1/auth_token/', include('djoser.urls.authtoken')),
 
     path('student/', include('student.urls')),
     path('teacher/', include('teacher.urls')),

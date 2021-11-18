@@ -60,15 +60,15 @@ class CustomUser(AbstractBaseUser):
            type updated_at: bool
        """
 
-    first_name = models.CharField(blank=True, max_length=20)
-    middle_name = models.CharField(blank=True, max_length=20)
-    last_name = models.CharField(blank=True, max_length=20)
-    email = models.EmailField(max_length=100, unique=True, validators=[validate_email])
-    password = models.CharField(max_length=128)
+    first_name = models.CharField(blank=True, max_length=20, verbose_name="Ім'я")
+    middle_name = models.CharField(blank=True, max_length=20, verbose_name="По-батькові")
+    last_name = models.CharField(blank=True, max_length=20, verbose_name="Прізвище")
+    email = models.EmailField(max_length=100, unique=True, validators=[validate_email], verbose_name="Електронна адреса")
+    password = models.CharField(max_length=128, verbose_name="Пароль")
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    role = models.IntegerField(default=0, choices=ROLE_CHOICES)
-    is_active = models.BooleanField(default=False)
+    role = models.IntegerField(default=0, choices=ROLE_CHOICES, verbose_name="Роль")
+    is_active = models.BooleanField(default=False, verbose_name="Активний")
 
     USERNAME_FIELD = 'email'
     objects = UserManager()
