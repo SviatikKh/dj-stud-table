@@ -1,5 +1,6 @@
 import logging
 from django.db import models, IntegrityError, DataError
+
 Teacherr = logging.getLogger(__name__)
 
 
