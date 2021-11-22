@@ -9,7 +9,7 @@ jobs:
       - name: Run Django unit tests
         run: |
           cd statement
-          apt-get install python3-setuptools
+          sudo apt-get install python3-setuptools
           pip3 install setuptools-rust
           pip3 install -r requirements.txt
           python3 manage.py test
