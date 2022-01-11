@@ -2,7 +2,7 @@
 {% block content %}
 
 
-<tr><th colspan="5">Група {{ group.group }}</th></tr>
+<tr><th colspan="5">Група {{ group.name }}</th></tr>
 <form action="" method="post">
         {% csrf_token %}
 
@@ -13,7 +13,7 @@
       <th>№ п/п</th>
       <th>Студент</th>
        {% for subject in subjects %}
-           <th>{{ subject.subject }}</th>
+           <th>{{ subject.name }}</th>
        {% endfor %}
     </tr>
   </thead>
@@ -29,13 +29,6 @@
                 {% else %}
                      <td><input name="{{ student }}_{{ subject }}" type="text" size="5"> </td>
                  {% endif %}
-{#          {% for point in score_summary.values %}#}
-{#                <td>{{ sc_sum.items.point }}</td>#}
-{#                {% if sc_sum.point is not None and sc_sum.student == student and sc_sum.subject == subject %}#}
-{#              <td><input value={{ point }} disabled type="text" size="5"> </td>#}
-{#          {% else %}#}
-{#              {% for subject in subjects %}#}
-{#                  <td><input name="student_{{ sc_sum.student.id }}" type="text" size="5"> </td>#}
               {% endfor %}
    {% endfor %}
         </tr>
@@ -45,13 +38,3 @@
 </form>
 
 {% endblock %}
-
-{% comment %}
- {% for sc_sum in score_summary %}
-                          {% if sc_sum.point is not None and sc_sum.student == student and sc_sum.subject == subject %}
-                        <td><input value={{ sc_sum.point }} disabled name="student_{{ student.id }}" type="text"> </td>
-                          {% else %}
-                            <td><input name="student_{{ student.id }}" type="text"> </td>
-                      {% endif %}
-                          {% endfor %}
-{% endcomment %}

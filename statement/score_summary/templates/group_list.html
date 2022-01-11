@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <form method="post">
 {% csrf_token %}
-
-{% for s in form %}
-    <p>{{ s }} {{ s.label }}</p>
+<ul>
+{% for gl in group_list %}
+    <li><a href="{% url "group_list" %}">{{ gl.name }}</a></li>
 {% endfor %}
-<input type="submit" value="Save">
+</ul>
 </form>
-
-
 
 {% endblock %}

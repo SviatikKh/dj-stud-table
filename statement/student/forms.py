@@ -4,17 +4,20 @@ from score_summary.models import Group
 
 
 class StudentForm(forms.Form):
-    choices = tuple(((group.id, group.group) for group in Group.objects.all()))
+    try:
+        choices = tuple(((group.id, group.name) for group in Group.objects.all()))
+    except:
+        choices = tuple()
     name = forms.CharField()
     surname = forms.CharField()
     patronymic = forms.CharField()
     group = forms.ChoiceField(choices=choices)
-    widgets = {
-        'name': forms.TextInput(attrs={'class': 'form-control'}),
-        'surname': forms.TextInput(attrs={'class': 'form-control'}),
-        'patronymic': forms.TextInput(attrs={'class': 'form-control'}),
-        'group': forms.TextInput(attrs={'class': 'form-control'}),
-                }
+    # widgets = {
+    #     'name': forms.TextInput(attrs={'class': 'form-control'}),
+    #     'surname': forms.TextInput(attrs={'class': 'form-control'}),
+    #     'patronymic': forms.TextInput(attrs={'class': 'form-control'}),
+    #     'group': forms.TextInput(attrs={'class': 'form-control'}),
+    #             }
 
     def create(self):
         new_student = Student.objects.create(name=self.cleaned_data['name'],

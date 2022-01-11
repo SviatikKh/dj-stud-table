@@ -1,21 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load crispy_forms_tags %}
 
     <form action="{% url 'create_student' %}" method="post">
         {% csrf_token %}
-        {% for field in form %}
-            <div class="form-group">
-                {% if field.errors %}
-                <div class="alert alert-danger">
-                    {{ field.errors }}
-                </div>
-                {%endif%}
-                {{field.label}}
-                {{field}}
-            </div>
-            {%endfor%}
+        {{ form|crispy }}
+{#        {% for field in form %}#}
+{#            <div class="form-group">#}
+{#                {% if field.errors %}#}
+{#                <div class="alert alert-danger">#}
+{#                    {{ field.errors|as_crispy_field }}#}
+{#                </div>#}
+{#                {%endif%}#}
+{#                {{field.label|as_crispy_field}}#}
+{#                {{field|as_crispy_field}}#}
+{#            </div>#}
+{#            {%endfor%}#}
         <button type="submit" class="btn btn-primary">Додати студента</button>
     </form>
-
 
 {% endblock %}
