@@ -34,6 +34,7 @@ class Subject(models.Model):
 
 
 POINTS = (
+    ("None", None),
     ("2", "2"),
     ("3", "3"),
     ("4", "4"),
@@ -46,8 +47,7 @@ POINTS = (
     ("11", "11"),
     ("12", "12"),
     ("зарах.", "зарах."),
-    ("None", None)
-)
+    )
 
 
 class Point(models.Model):

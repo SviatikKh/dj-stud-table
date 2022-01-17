@@ -1,9 +1,7 @@
-from django.forms import modelformset_factory
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 
 from score_summary.models import Scoresummary, Subject, Point, Group
 from student.models import Student
-from .forms import ScoresummaryForm
 
 from django import template
 
@@ -19,8 +17,6 @@ def show_score_summary(request):
 
 def fill_score_summary(request):
     sc = Scoresummary.objects.all().order_by('-subject')
-    # sc = Scoresummary.objects.filter(group__name=request.POST)
-    print('first', request.POST)
     scores = {}
     records_mapping = {}
 
@@ -57,8 +53,7 @@ def group_list(request):
 
 
 def group_detail(request, name):
-
-    sc = Scoresummary.objects.filter(group__name=name)
+    sc = Scoresummary.objects.filter(group__name=name).order_by('subject')
     scores = {}
     records_mapping = {}
 
@@ -75,16 +70,15 @@ def group_detail(request, name):
             scores[s.student.full_name()] = {s.subject.name: point}
 
     context = {'score_summary': scores,
-               'students': Student.objects.all(),
-               'subjects': Subject.objects.all().order_by('name'),
-               'group': name}
+               'subjects': Group.objects.get(name=name).subject.all().order_by('name'),
+               'group': name,
+               'points_p': Point.objects.all().order_by('-value')}
 
     if request.method == "POST":
         for key, point in request.POST.items():
             student = records_mapping.get(key)
-            if student and point:
+            if student and point and point != 'None':
                 student.point = Point.objects.get(value=point)
                 student.save()
-                print("record maping", records_mapping.get(key))
-        return redirect('score_summary')
+        return redirect('group_detail', name=name)
     return render(request, 'score_summary.html', context=context)
